@@ -30,6 +30,7 @@
       </ul>
       <div class="userinfo">主应用的state：{{ JSON.stringify(user) }}</div>
     </div>
+
     <div id="subapp-viewport"></div>
   </div>
 </template>
@@ -58,6 +59,9 @@ export default {
       let application = "";
       if (name === "sub-vue") {
         application = "vue子应用";
+      }
+      if (name === "sub-vue-hash") {
+        application = "vue子应用1";
       }
       if (name === "sub-react") {
         application = "react子应用";

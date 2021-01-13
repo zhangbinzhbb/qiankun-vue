@@ -3,37 +3,30 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <a href="#"
-         @click="gotoSubReact"
-         style="marin: 0 0 0 10px">跳转到sub-react</a>
     </div>
-    <div>
-      从vuex的global module的state： {{ JSON.stringify(user) }}
-    </div>
-
-    <div>
-      <Tag msg="我是 sub-vue 组件Tag" />
-    </div>
+    <Tag msg="我是来自 sub-vue 组件Tag" />
     <router-view />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import Tag from "@/components/Tag.vue";
 export default {
   components: {
-    Tag,
-  },
-  computed: {
-    // 通过global获取user的信息
-    ...mapState("global", {
-      user: (state) => state.user,
-    }),
-  },
-  methods: {
-    gotoSubReact() {
-      history.pushState(null, "sub-react", "/sub-react");
+    Tag: async () => {
+      if (window.commonComponents.Tag) return window.commonComponents.Tag;
+
+      const app = window.loadMicroApp({
+        name: "sub-vue",
+        entry: "http://localhost:7777",
+        container: "#subapp-viewport",
+        props: { data: { commonComponents: window.commonComponents } },
+      });
+
+      await app.mountPromise;
+      console.log(window.commonComponents);
+      console.log(app);
+      // app.unmount(); 不能卸载，卸载时会去掉样式的
+      return window.commonComponents.Tag;
     },
   },
 };

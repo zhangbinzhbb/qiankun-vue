@@ -57,4 +57,6 @@ registerMicroApps(apps, {
 });
 
 setDefaultMountApp("/sub-vue");
-start();
+
+// 共享组件必须开启多实例
+start({ singular: false });
