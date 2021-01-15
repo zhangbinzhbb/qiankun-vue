@@ -1,3 +1,4 @@
+
 <template lang="html">
   <div>
     <h1>{{ msg }}</h1>

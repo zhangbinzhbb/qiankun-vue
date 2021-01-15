@@ -26,13 +26,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@fengxianqi.github.com:fengxianqi/qiankun-example.git"
+    "url": ""
   },
   "keywords": [
     "qiankun",
     "qiankun-example",
     "demo"
   ],
-  "author": "fengxianqi",
+  "author": "zhbb",
   "license": "MIT"
 }

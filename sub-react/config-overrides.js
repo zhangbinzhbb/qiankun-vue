@@ -1,5 +1,5 @@
 const {
-  packageName
+  name
 } = require('./package.json');
 
 module.exports = {
@@ -9,9 +9,11 @@ module.exports = {
       (e) => !e.includes('webpackHotDevClient')
     );
 
-    config.output.library = `${packageName}-[packageName]`;
+    config.output.library = `${name}-[name]`;
     config.output.libraryTarget = 'umd';
-    config.output.jsonpFunction = `webpackJsonp_${packageName}`;
+    config.output.jsonpFunction = `webpackJsonp_${name}`;
+    config.output.globalObject = 'window';
+    
     return config;
   },
   devServer: (configFunction) => {
